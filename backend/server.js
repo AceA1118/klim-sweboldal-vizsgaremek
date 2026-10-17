@@ -10,7 +10,7 @@ app.use(express.json());
 const db = require("./database/db");
 
 const authRoutes = require("./routes/authRoutes");
-const appointmentRoutes = require("./routes/appointentRoutes");
+const appointmentRoutes = require("./routes/appointmentRoutes");
 const productRoutes = require("./routes/productRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const invoiceRoutes = require("./routes/invoiceRoutes");
