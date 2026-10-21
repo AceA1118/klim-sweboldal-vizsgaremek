@@ -1,17 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const szereloController = require("../controllers/szereloController");
+const appointmentController = require("../controllers/appointmentController");
+const { verifyToken, requireRole } = require("../middleware/auth");
 
-// Összes időpont (szerelő)
-router.get("/appointments", szereloController.getAllAppointments);
+// Minden szerelő végpont bejelentkezést és szerelő/admin szerepkört igényel
+router.use(verifyToken, requireRole("szerelo", "admin"));
 
-// Időpont jóváhagyása
-router.put("/approve/:id", szereloController.approveAppointment);
+// Összes időpont
+router.get("/appointments", appointmentController.getAllAppointments);
 
-// Időpont elutasítása
-router.put("/reject/:id", szereloController.rejectAppointment);
+// Időpont jóváhagyása / elutasítása (ugyanaz a logika, mint az /appointments alatt)
+router.put("/approve/:id", appointmentController.approveAppointment);
+router.put("/reject/:id", appointmentController.rejectAppointment);
 
-// Szerelő saját időpontjai (ha van szerelő ID)
-router.get("/my/:szerelo_id", szereloController.getMyAppointments);
+// A szerelő saját időpontjai (a szerelő ID a tokenből jön)
+router.get("/my", requireRole("szerelo"), szereloController.getMyAppointments);
 
 module.exports = router;

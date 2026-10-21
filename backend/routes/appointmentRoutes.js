@@ -1,20 +1,21 @@
 const express = require("express");
 const router = express.Router();
 const appointmentController = require("../controllers/appointmentController");
+const { verifyToken, requireRole } = require("../middleware/auth");
 
-//foglalás létrehozása
-router.post("/create", appointmentController.createAppointment);
+// Foglalás létrehozása (bejelentkezett felhasználó)
+router.post("/create", verifyToken, appointmentController.createAppointment);
 
-// Felhasználó saját fglalásai
-router.get("/my/:user_id", appointmentController.getUserAppointments);
+// Felhasználó saját foglalásai (a user a tokenből jön)
+router.get("/my", verifyToken, appointmentController.getUserAppointments);
 
-// Összes foglalás (admin/szerelő)
-router.get("/all", appointmentController.getAllAppointments);
+// Összes foglalás (szerelő / admin)
+router.get("/all", verifyToken, requireRole("szerelo", "admin"), appointmentController.getAllAppointments);
 
-//foglalás jóváhagyása
-router.put("/approve/:id", appointmentController.approveAppointment);
+// Foglalás jóváhagyása (szerelő / admin)
+router.put("/approve/:id", verifyToken, requireRole("szerelo", "admin"), appointmentController.approveAppointment);
 
-//fogallás elutasítása
-router.put("/reject/:id", appointmentController.rejectAppointment);
+// Foglalás elutasítása (szerelő / admin)
+router.put("/reject/:id", verifyToken, requireRole("szerelo", "admin"), appointmentController.rejectAppointment);
 
 module.exports = router;
