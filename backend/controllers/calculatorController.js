@@ -2,17 +2,23 @@ const calculatorService = require("../services/calculatorService");
 
 module.exports = {
 
-  // KALKULÁCIÓ FUTTATÁSA + MENTÉSE
+  // KALKULÁCIÓ FUTTATÁSA + MENTÉSE (a felhasználó a tokenből jön)
   runCalculator: async (req, res) => {
     try {
-      const { user_id, room_size, insulation, sunlight } = req.body;
+      const user_id = req.user.id;
+      const { room_size, insulation, sunlight } = req.body || {};
+
+      const size = Number(room_size);
+      if (!size || size <= 0) {
+        return res.status(400).json({ message: "A helyiség mérete kötelező, és pozitív szám legyen!" });
+      }
 
       // Egyszerű logika: ajánlott modell kiválasztása
       let recommended_model = "";
 
-      if (room_size <= 20) {
+      if (size <= 20) {
         recommended_model = "Gree Amber 2.5 kW";
-      } else if (room_size <= 35) {
+      } else if (size <= 35) {
         recommended_model = "Gree Amber 3.5 kW";
       } else {
         recommended_model = "Gree Amber 5 kW";
@@ -21,9 +27,9 @@ module.exports = {
       // Mentés service-en keresztül
       const calcId = await calculatorService.saveCalculation(
         user_id,
-        room_size,
-        insulation,
-        sunlight,
+        size,
+        insulation || "",
+        sunlight || "",
         recommended_model
       );
 
@@ -41,15 +47,14 @@ module.exports = {
   // FELHASZNÁLÓ SAJÁT KALKULÁCIÓI
   getUserResults: async (req, res) => {
     try {
-      const user_id = req.params.user_id;
-      const results = await calculatorService.getUserResults(user_id);
+      const results = await calculatorService.getUserResults(req.user.id);
       res.json(results);
     } catch (err) {
       res.status(500).json({ error: err });
     }
   },
 
-  // ÖSSZES KALKULÁCIÓ (ADMIN)
+  // ÖSSZES KALKULÁCIÓ (admin)
   getAllResults: async (req, res) => {
     try {
       const results = await calculatorService.getAllResults();

@@ -1,10 +1,18 @@
 const db = require("../database/db");
 
+const ALLOWED_STATUSES = ["pending", "paid", "shipped", "cancelled"];
+
 module.exports = {
 
-  // RENDELÉS LÉTREHOZÁSA
+  // RENDELÉS LÉTREHOZÁSA (a felhasználó a tokenből jön)
+  // FIGYELEM: az ár még a kliensről jön, a következő lépésben ezt szerveroldalra visszük!
   createOrder: (req, res) => {
-    const { user_id, items, total_price } = req.body;
+    const user_id = req.user.id;
+    const { items, total_price } = req.body || {};
+
+    if (!Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ message: "A rendelésnek legalább egy tételt tartalmaznia kell!" });
+    }
 
     // 1. Rendelés mentése az orders táblába
     db.query(
@@ -30,11 +38,9 @@ module.exports = {
 
   // FELHASZNÁLÓ SAJÁT RENDELÉSEI
   getUserOrders: (req, res) => {
-    const user_id = req.params.user_id;
-
     db.query(
       "SELECT * FROM orders WHERE user_id = ? ORDER BY id DESC",
-      [user_id],
+      [req.user.id],
       (err, results) => {
         if (err) return res.status(500).json({ error: err });
         res.json(results);
@@ -42,7 +48,7 @@ module.exports = {
     );
   },
 
-  // RENDELÉS + TÉTELEK LEKÉRÉSE
+  // RENDELÉS + TÉTELEK LEKÉRÉSE (csak a tulajdonos vagy admin)
   getOrderDetails: (req, res) => {
     const order_id = req.params.order_id;
 
@@ -54,6 +60,10 @@ module.exports = {
       }
 
       const order = orderResult[0];
+
+      if (order.user_id !== req.user.id && req.user.role !== "admin") {
+        return res.status(403).json({ message: "Nincs jogosultságod ehhez a rendeléshez!" });
+      }
 
       // 2. Tételek adatai
       db.query(
@@ -71,16 +81,25 @@ module.exports = {
     });
   },
 
-  // RENDELÉS STÁTUSZ MÓDOSÍTÁSA
+  // RENDELÉS STÁTUSZ MÓDOSÍTÁSA (admin)
   updateStatus: (req, res) => {
     const order_id = req.params.order_id;
-    const { status } = req.body;
+    const { status } = req.body || {};
+
+    if (!ALLOWED_STATUSES.includes(status)) {
+      return res.status(400).json({
+        message: `Érvénytelen státusz! Engedélyezett: ${ALLOWED_STATUSES.join(", ")}`
+      });
+    }
 
     db.query(
       "UPDATE orders SET status = ? WHERE id = ?",
       [status, order_id],
-      (err) => {
+      (err, result) => {
         if (err) return res.status(500).json({ error: err });
+        if (result.affectedRows === 0) {
+          return res.status(404).json({ message: "Rendelés nem található!" });
+        }
         res.json({ message: "Rendelés státusza frissítve!" });
       }
     );
