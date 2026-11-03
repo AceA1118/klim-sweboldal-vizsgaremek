@@ -2,38 +2,104 @@ const db = require("../database/db");
 
 const ALLOWED_STATUSES = ["pending", "paid", "shipped", "cancelled"];
 
+// Saját hibatípus, hogy a tranzakción belül dobott hibákból tiszta HTTP válasz legyen
+const httpError = (status, message) => Object.assign(new Error(message), { status });
+
 module.exports = {
 
-  // RENDELÉS LÉTREHOZÁSA (a felhasználó a tokenből jön)
-  // FIGYELEM: az ár még a kliensről jön, a következő lépésben ezt szerveroldalra visszük!
-  createOrder: (req, res) => {
+  // RENDELÉS LÉTREHOZÁSA
+  // A kliens csak [{ product_id, quantity }] listát küld, az árat és az összeget
+  // a szerver számolja az adatbázisban lévő árakból, tranzakcióban, készletkezeléssel.
+  createOrder: async (req, res) => {
     const user_id = req.user.id;
-    const { items, total_price } = req.body || {};
+    const { items } = req.body || {};
 
     if (!Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ message: "A rendelésnek legalább egy tételt tartalmaznia kell!" });
     }
 
-    // 1. Rendelés mentése az orders táblába
-    db.query(
-      "INSERT INTO orders (user_id, total_price, status) VALUES (?, ?, 'pending')",
-      [user_id, total_price],
-      (err, result) => {
-        if (err) return res.status(500).json({ error: err });
+    // Tételek ellenőrzése, az azonos termékeket összevonjuk
+    const wanted = new Map();
+    for (const item of items) {
+      const product_id = Number(item && item.product_id);
+      const quantity = Number(item && item.quantity);
 
-        const order_id = result.insertId;
-
-        // 2. Tételek mentése az order_items táblába
-        items.forEach(item => {
-          db.query(
-            "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)",
-            [order_id, item.product_id, item.quantity, item.price]
-          );
+      if (!Number.isInteger(product_id) || product_id <= 0 ||
+          !Number.isInteger(quantity) || quantity <= 0 || quantity > 100) {
+        return res.status(400).json({
+          message: "Minden tételnél kötelező a product_id és a quantity (1-100 közötti egész szám)!"
         });
-
-        res.json({ message: "Rendelés sikeresen létrehozva!", order_id });
       }
-    );
+      wanted.set(product_id, (wanted.get(product_id) || 0) + quantity);
+    }
+
+    // Azonos zárolási sorrend (product_id szerint), hogy ne legyen holtpont
+    const lines = [...wanted.entries()].sort((a, b) => a[0] - b[0]);
+
+    const conn = await db.promise().getConnection();
+
+    try {
+      await conn.beginTransaction();
+
+      let total = 0;
+      const orderLines = [];
+
+      for (const [product_id, quantity] of lines) {
+        const [rows] = await conn.query(
+          "SELECT id, name, price, stock FROM products WHERE id = ? FOR UPDATE",
+          [product_id]
+        );
+
+        if (rows.length === 0) {
+          throw httpError(404, `A(z) ${product_id} azonosítójú termék nem létezik!`);
+        }
+
+        const product = rows[0];
+        if (product.stock < quantity) {
+          throw httpError(400, `Nincs elég készlet ebből: ${product.name} (elérhető: ${product.stock} db)`);
+        }
+
+        total += product.price * quantity;
+        orderLines.push({ product_id, quantity, price: product.price });
+      }
+
+      const [orderResult] = await conn.query(
+        "INSERT INTO orders (user_id, total_price, status) VALUES (?, ?, 'pending')",
+        [user_id, total]
+      );
+      const order_id = orderResult.insertId;
+
+      for (const line of orderLines) {
+        await conn.query(
+          "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)",
+          [order_id, line.product_id, line.quantity, line.price]
+        );
+        await conn.query(
+          "UPDATE products SET stock = stock - ? WHERE id = ?",
+          [line.quantity, line.product_id]
+        );
+      }
+
+      await conn.commit();
+
+      res.json({
+        message: "Rendelés sikeresen létrehozva!",
+        order_id,
+        total_price: total
+      });
+
+    } catch (err) {
+      await conn.rollback();
+
+      if (err.status) {
+        return res.status(err.status).json({ message: err.message });
+      }
+      console.error(err);
+      res.status(500).json({ message: "Szerverhiba a rendelés létrehozásakor!" });
+
+    } finally {
+      conn.release();
+    }
   },
 
   // FELHASZNÁLÓ SAJÁT RENDELÉSEI
