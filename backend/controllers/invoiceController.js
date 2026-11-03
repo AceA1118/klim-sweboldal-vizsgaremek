@@ -1,23 +1,31 @@
 const invoiceService = require("../services/invoiceService");
 
+// Egységes hibakezelés: tudatos hibáknál a saját üzenet, egyébként általános 500
+const handleError = (err, res) => {
+  if (err.status) {
+    return res.status(err.status).json({ message: err.message });
+  }
+  console.error(err);
+  res.status(500).json({ message: "Szerverhiba történt!" });
+};
+
 module.exports = {
 
-  // SZÁMLA LÉTREHOZÁSA (admin)
+  // SZÁMLA LÉTREHOZÁSA (admin) - csak az order_id kell, az összeg a rendelésből jön
   createInvoice: async (req, res) => {
     try {
-      const { order_id, user_id, amount, date } = req.body || {};
+      const order_id = Number((req.body || {}).order_id);
 
-      if (!order_id || !user_id || amount === undefined) {
-        return res.status(400).json({ message: "Az order_id, user_id és amount megadása kötelező!" });
+      if (!Number.isInteger(order_id) || order_id <= 0) {
+        return res.status(400).json({ message: "Az order_id megadása kötelező!" });
       }
 
-      const invoiceDate = date || new Date().toISOString().slice(0, 10);
-      const invoiceId = await invoiceService.createInvoice(order_id, user_id, amount, invoiceDate);
+      const invoiceId = await invoiceService.createInvoiceFromOrder(order_id);
 
       res.json({ message: "Számla sikeresen létrehozva!", invoiceId });
 
     } catch (err) {
-      res.status(500).json({ error: err });
+      handleError(err, res);
     }
   },
 
@@ -39,7 +47,7 @@ module.exports = {
       res.json(invoice[0]);
 
     } catch (err) {
-      res.status(500).json({ error: err });
+      handleError(err, res);
     }
   },
 
@@ -50,7 +58,7 @@ module.exports = {
       res.json(invoices);
 
     } catch (err) {
-      res.status(500).json({ error: err });
+      handleError(err, res);
     }
   },
 
@@ -61,7 +69,7 @@ module.exports = {
       res.json(invoices);
 
     } catch (err) {
-      res.status(500).json({ error: err });
+      handleError(err, res);
     }
   }
 
