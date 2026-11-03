@@ -2,41 +2,67 @@ const db = require("../database/db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Egyszerű segéd: lekérdezés, ami a sorokat adja vissza
+const query = (sql, params) => db.promise().query(sql, params).then(([rows]) => rows);
+
 module.exports = {
 
   //REGISZTRÁCIÓ
-  register: (req, res) => {
-    const { name, email, password } = req.body;
+  register: async (req, res) => {
+    try {
+      const { name, email, password } = req.body || {};
 
-    //létezik-e az email?
-    db.query("SELECT * FROM users WHERE email = ?", [email], async (err, results) => {
-      if (err) return res.status(500).json({ error: err });
-      if (results.length > 0) {
+      if (typeof name !== "string" || !name.trim() ||
+          typeof email !== "string" || typeof password !== "string") {
+        return res.status(400).json({ message: "A név, az email és a jelszó megadása kötelező!" });
+      }
+      if (!EMAIL_RE.test(email.trim())) {
+        return res.status(400).json({ message: "Érvénytelen email cím!" });
+      }
+      if (password.length < 8 || password.length > 72) {
+        return res.status(400).json({ message: "A jelszó 8 és 72 karakter között legyen!" });
+      }
+
+      const cleanEmail = email.trim().toLowerCase();
+
+      //létezik-e az email?
+      const existing = await query("SELECT id FROM users WHERE email = ?", [cleanEmail]);
+      if (existing.length > 0) {
         return res.status(400).json({ message: "Ez az email már létezik!" });
       }
 
-      //jelszó hashelés
+      //jelszó hashelés + mentés (a szerepkör mindig "user")
       const hashedPassword = await bcrypt.hash(password, 10);
-
-      //Mentés az adatbázisba
-      db.query(
-        "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)",
-        [name, email, hashedPassword, "user"],
-        (err) => {
-          if (err) return res.status(500).json({ error: err });
-          res.json({ message: "Sikeres regisztráció!" });
-        }
+      await query(
+        "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, 'user')",
+        [name.trim(), cleanEmail, hashedPassword]
       );
-    });
+
+      res.json({ message: "Sikeres regisztráció!" });
+
+    } catch (err) {
+      // két egyszerre érkező regisztráció ugyanazzal az emaillel
+      if (err.code === "ER_DUP_ENTRY") {
+        return res.status(400).json({ message: "Ez az email már létezik!" });
+      }
+      console.error(err);
+      res.status(500).json({ message: "Szerverhiba a regisztráció során!" });
+    }
   },
 
-  //login
-  login: (req, res) => {
-    const { email, password } = req.body;
+  //LOGIN
+  login: async (req, res) => {
+    try {
+      const { email, password } = req.body || {};
 
-    // Felhasználó keresése
-    db.query("SELECT * FROM users WHERE email = ?", [email], async (err, results) => {
-      if (err) return res.status(500).json({ error: err });
+      if (typeof email !== "string" || typeof password !== "string" || !email || !password) {
+        return res.status(400).json({ message: "Az email és a jelszó megadása kötelező!" });
+      }
+
+      // Felhasználó keresése
+      const results = await query("SELECT * FROM users WHERE email = ?", [email.trim().toLowerCase()]);
       if (results.length === 0) {
         return res.status(400).json({ message: "Hibás email vagy jelszó!" });
       }
@@ -66,7 +92,11 @@ module.exports = {
           role: user.role
         }
       });
-    });
+
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Szerverhiba a bejelentkezés során!" });
+    }
   }
 
 };
