@@ -1,6 +1,15 @@
 const db = require("../database/db");
+const invoiceService = require("../services/invoiceService");
 
 const ALLOWED_STATUSES = ["pending", "paid", "shipped", "cancelled"];
+
+// Melyik státuszból melyikbe lehet lépni
+const TRANSITIONS = {
+  pending: ["paid", "cancelled"],
+  paid: ["shipped", "cancelled"],
+  shipped: [],
+  cancelled: []
+};
 
 // Saját hibatípus, hogy a tranzakción belül dobott hibákból tiszta HTTP válasz legyen
 const httpError = (status, message) => Object.assign(new Error(message), { status });
@@ -148,7 +157,10 @@ module.exports = {
   },
 
   // RENDELÉS STÁTUSZ MÓDOSÍTÁSA (admin)
-  updateStatus: (req, res) => {
+  // - csak engedélyezett átmenetek (pending -> paid/cancelled, paid -> shipped/cancelled)
+  // - lemondáskor a készlet visszakerül
+  // - kifizetéskor (paid) automatikusan számla készül a rendelésből
+  updateStatus: async (req, res) => {
     const order_id = req.params.order_id;
     const { status } = req.body || {};
 
@@ -158,17 +170,64 @@ module.exports = {
       });
     }
 
-    db.query(
-      "UPDATE orders SET status = ? WHERE id = ?",
-      [status, order_id],
-      (err, result) => {
-        if (err) return res.status(500).json({ error: err });
-        if (result.affectedRows === 0) {
-          return res.status(404).json({ message: "Rendelés nem található!" });
-        }
-        res.json({ message: "Rendelés státusza frissítve!" });
-      }
-    );
-  }
+    const conn = await db.promise().getConnection();
 
+    try {
+      await conn.beginTransaction();
+
+      const [rows] = await conn.query(
+        "SELECT id, status FROM orders WHERE id = ? FOR UPDATE",
+        [order_id]
+      );
+
+      if (rows.length === 0) {
+        throw httpError(404, "Rendelés nem található!");
+      }
+
+      const current = rows[0].status;
+
+      if (!TRANSITIONS[current].includes(status)) {
+        throw httpError(400, `A(z) ${current} státuszú rendelés nem állítható erre: ${status}`);
+      }
+
+      // Lemondás: a rendelt mennyiségek visszakerülnek a készletre
+      if (status === "cancelled") {
+        await conn.query(
+          `UPDATE products p
+           JOIN order_items oi ON oi.product_id = p.id
+           SET p.stock = p.stock + oi.quantity
+           WHERE oi.order_id = ?`,
+          [order_id]
+        );
+      }
+
+      await conn.query("UPDATE orders SET status = ? WHERE id = ?", [status, order_id]);
+
+      // Kifizetés: automatikus számla
+      let invoice_id = null;
+      if (status === "paid") {
+        invoice_id = await invoiceService.createInvoiceFromOrder(order_id, conn);
+      }
+
+      await conn.commit();
+
+      res.json({
+        message: "Rendelés státusza frissítve!",
+        status,
+        invoice_id
+      });
+
+    } catch (err) {
+      await conn.rollback();
+
+      if (err.status) {
+        return res.status(err.status).json({ message: err.message });
+      }
+      console.error(err);
+      res.status(500).json({ message: "Szerverhiba a státusz módosításakor!" });
+
+    } finally {
+      conn.release();
+    }
+  }
 };
