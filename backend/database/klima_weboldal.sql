@@ -48,14 +48,14 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 -- ---------- appointments ----------
--- (a régi `mesage` elírt oszlop itt `message`, a kód is ezt használja;
---  az `assigned_szerelo` a szerelőhöz rendelést szolgálja)
+-- (az `assigned_szerelo` a szerelőhöz rendelést szolgálja,
+--  a `cancelled` státusz a felhasználó általi lemondást jelzi)
 CREATE TABLE `appointments` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `date` DATE NOT NULL,
   `time` TIME NOT NULL,
-  `status` ENUM('pending','approved','rejected') NOT NULL DEFAULT 'pending',
+  `status` ENUM('pending','approved','rejected','cancelled') NOT NULL DEFAULT 'pending',
   `message` TEXT NOT NULL,
   `assigned_szerelo` INT NULL DEFAULT NULL,
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -143,4 +143,4 @@ INSERT INTO `products` (`id`, `name`, `price`, `description`, `stock`, `category
 
 -- Példa időpontfoglalás (a teszt felhasználótól)
 INSERT INTO `appointments` (`user_id`, `date`, `time`, `status`, `message`, `assigned_szerelo`) VALUES
-(3, '2026-11-05', '10:00:00', 'pending', 'Klíma telepítést kérnék a nappaliba.', NULL);
+(3, '2026-12-01', '10:00:00', 'pending', 'Klíma telepítést kérnék a nappaliba.', NULL);
