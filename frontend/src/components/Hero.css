@@ -1,0 +1,25 @@
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.hero-title {
+  font-size: 3rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.hero-card {
+  border: 1px solid #cccccc;
+  padding: 1rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}

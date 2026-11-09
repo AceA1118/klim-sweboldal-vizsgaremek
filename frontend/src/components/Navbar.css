@@ -1,0 +1,20 @@
+.navbar {
+  border-bottom: 1px solid #cccccc;
+}
+
+.navbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+
+.navbar-actions {
+  display: flex;
+  gap: 0.5rem;
+}
