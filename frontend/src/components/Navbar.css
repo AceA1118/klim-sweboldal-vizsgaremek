@@ -13,7 +13,6 @@
   height: 4rem;
 }
 
-/* Logó */
 .navbar-logo {
   display: flex;
   align-items: center;
@@ -43,7 +42,6 @@
   color: var(--muted-foreground);
 }
 
-/* Menüpontok */
 .navbar-links {
   display: flex;
   gap: 0.25rem;
@@ -65,7 +63,6 @@
   background-color: var(--secondary);
 }
 
-/* Jobb oldali gombok */
 .navbar-actions {
   display: flex;
   align-items: center;
