@@ -1,6 +1,5 @@
 .hero {
-  min-height: calc(100vh - 4rem);
-  display: flex;
+  min-height: calc(100vh - 4rem - 1px);
   align-items: center;
   padding: 4rem 0;
 }
