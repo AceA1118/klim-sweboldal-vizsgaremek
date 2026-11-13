@@ -140,7 +140,10 @@ INSERT INTO `products` (`id`, `name`, `price`, `description`, `stock`, `category
 (3, 'Gree Amber 5 kW',   329000, 'Nagy teljesítményű inverteres oldalfali split klíma nagyobb terekhez.', 5, 'Oldalfali', 'Gree',        18000, 1, 1, '/images/gree-amber-5.jpg'),
 (4, 'Midea Xtreme Save 2.6 kW', 199000, 'Energiatakarékos inverteres klíma, csendes működéssel.', 12, 'Oldalfali', 'Midea',             9000,  0, 1, '/images/midea-xtreme-26.jpg'),
 (5, 'Daikin Perfera 3.5 kW',    389000, 'Prémium inverteres klíma kiváló hatásfokkal és Wi-Fi vezérléssel.', 4, 'Oldalfali', 'Daikin', 12000, 1, 1, '/images/daikin-perfera-35.jpg');
-
+(31, 'Gree Comfort Pro GWH12ACCXD-K6DNA1D 3,5 kW', 259900, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Gree).', 10, 'Oldalfali', 'Gree', 12000, 0, 1, '/images/gree-comfort-pro-gwh12accxd-k6dna1d.jpg'),
+(32, 'Midea LUN-12-SP Solunar 3,5 kW', 243840, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Midea).', 10, 'Oldalfali', 'Midea', 12000, 0, 1, '/images/midea-lun-12-sp-solunar.jpg'),
+(33, 'Midea MEX-12-SP All Easy Pro 3,5 kW', 247650, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Midea).', 10, 'Oldalfali', 'Midea', 12000, 0, 1, '/images/midea-mex-12-sp-all-easy-pro.jpg'),
+(34, 'AZURI ARIES AZI-WK35XA 3,5 kW', 209999, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Azuri).', 10, 'Oldalfali', 'Azuri', 12000, 0, 1, '/images/azuri-aries-azi-wk35xa.jpg'),
 -- Példa időpontfoglalás (a teszt felhasználótól)
 INSERT INTO `appointments` (`user_id`, `date`, `time`, `status`, `message`, `assigned_szerelo`) VALUES
 (3, '2026-12-01', '10:00:00', 'pending', 'Klíma telepítést kérnék a nappaliba.', NULL);
