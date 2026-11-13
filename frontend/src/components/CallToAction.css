@@ -1,0 +1,35 @@
+.cta {
+  padding: 4rem 0;
+}
+
+.cta-box {
+  padding: 3rem 2rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, #0c4a6e, #0891b2, #164e63);
+  text-align: center;
+}
+
+.cta-title {
+  margin-bottom: 1rem;
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: white;
+}
+
+.cta-text {
+  max-width: 36rem;
+  margin: 0 auto 2rem;
+  color: #e0f2fe;
+}
+
+.cta-button {
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 0.75rem;
+  background-color: white;
+  color: #0891b2;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+}
