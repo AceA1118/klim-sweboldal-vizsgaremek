@@ -144,6 +144,17 @@ INSERT INTO `products` (`id`, `name`, `price`, `description`, `stock`, `category
 (32, 'Midea LUN-12-SP Solunar 3,5 kW', 243840, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Midea).', 10, 'Oldalfali', 'Midea', 12000, 0, 1, '/images/midea-lun-12-sp-solunar.jpg'),
 (33, 'Midea MEX-12-SP All Easy Pro 3,5 kW', 247650, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Midea).', 10, 'Oldalfali', 'Midea', 12000, 0, 1, '/images/midea-mex-12-sp-all-easy-pro.jpg'),
 (34, 'AZURI ARIES AZI-WK35XA 3,5 kW', 209999, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Azuri).', 10, 'Oldalfali', 'Azuri', 12000, 0, 1, '/images/azuri-aries-azi-wk35xa.jpg'),
+(35, 'Fisher Special Edition FSAIF-SP-121AE3 3,5 kW', 210000, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Fisher).', 10, 'Oldalfali', 'Fisher', 12000, 0, 1, '/images/fisher-special-edition-fsaif-sp-121ae3.jpg'),
+(36, 'MDV EVO 3,5 kW', 199390, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (MDV).', 10, 'Oldalfali', 'MDV', 12000, 0, 1, '/images/mdv-evo.jpg'),
+(37, 'AUX AURA ASW-H12C5A4/CAR3DI-D0-4 3,5 kW', 295845, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (AUX).', 10, 'Oldalfali', 'AUX', 12000, 0, 1, '/images/aux-aura-asw-h12c5a4-car3di-d0-4.jpg'),
+(38, 'AUX Magma 2 ASW-H12C5A4/CCR3DI-D0-5 3,5 kW', 285098, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (AUX).', 5, 'Oldalfali', 'AUX', 12000, 0, 1, '/images/aux-magma-2-asw-h12c5a4-ccr3di-d0-5.jpg'),
+(39, 'AUX Gamma 3R ASW-H12C5B4/QGR3DI-C0-5 3,5 kW', 209901, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (AUX).', 10, 'Oldalfali', 'AUX', 12000, 0, 1, '/images/aux-gamma-3r-asw-h12c5b4-qgr3di-c0-5.jpg'),
+(40, 'Fisher Comfort Plus FSAIF-CP-121AE3/FSOAIF-CP-121AE3 3,5 kW', 308000, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Fisher).', 10, 'Oldalfali', 'Fisher', 12000, 0, 1, '/images/fisher-comfort-plus-fsaif-cp-121ae3-fsoaif-cp-121ae3.jpg'),
+(41, 'Polar Lite SIEH0035SDLA/SO1H0035SDLA 3,5 kW', 161250, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Polar).', 10, 'Oldalfali', 'Polar', 12000, 0, 1, '/images/polar-lite-sieh0035sdla-so1h0035sdla.jpg'),
+(42, 'Midea Breezeless+ MSF4-12-SP 3,5 kW', 294640, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Midea).', 0, 'Oldalfali', 'Midea', 12000, 0, 1, '/images/midea-breezeless-msf4-12-sp.jpg'),
+(43, 'AUX Delta 3 ASW-H12C5A4/CAR3DI-B8-5 3,5 kW', 247959, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (AUX).', 10, 'Oldalfali', 'AUX', 12000, 0, 1, '/images/aux-delta-3-asw-h12c5a4-car3di-b8-5.jpg'),
+(44, 'Midea Solstice SOL-12-SP 3,5 kW', 270510, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Midea).', 10, 'Oldalfali', 'Midea', 12000, 0, 1, '/images/midea-solstice-sol-12-sp.jpg'),
+(45, 'Fisher Nordic FSAIF-Nord-123AE3 3,5 kW', 465000, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Fisher).', 10, 'Oldalfali', 'Fisher', 12000, 0, 1, '/images/fisher-nordic-fsaif-nord-123ae3.jpg'),
 -- Példa időpontfoglalás (a teszt felhasználótól)
 INSERT INTO `appointments` (`user_id`, `date`, `time`, `status`, `message`, `assigned_szerelo`) VALUES
 (3, '2026-12-01', '10:00:00', 'pending', 'Klíma telepítést kérnék a nappaliba.', NULL);
