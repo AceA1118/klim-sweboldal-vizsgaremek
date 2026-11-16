@@ -33,3 +33,11 @@
   font-weight: 700;
   cursor: pointer;
 }
+
+.cta-button {
+  transition: transform 0.2s ease;
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+}

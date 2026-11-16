@@ -24,8 +24,8 @@ export default function Navbar() {
 
         {/* Gombok jobb oldalon */}
         <div className="navbar-actions">
-          <button className="icon-button">🌙</button>
-          <button className="icon-button">🛒</button>
+          <button className="icon-button" aria-label="Sötét mód">🌙</button>
+          <button className="icon-button" aria-label="Kosár">🛒</button>
           <button className="admin-button">Admin</button>
         </div>
       </div>
