@@ -11,7 +11,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-contact">
-          <span>+36 20 123 4567</span>
+          <span>+36 20 827 8312</span>
           <span>·</span>
           <span>csako@klima.hu</span>
           <span>·</span>

@@ -52,7 +52,7 @@ export default function Hero() {
             ))}
           </div>
 
-          <div className="hero-phone">+36 20 123 4567 — Hívjon most!</div>
+          <div className="hero-phone">+36 20 827 8312 — Hívjon most!</div>
         </div>
       </div>
     </section>
