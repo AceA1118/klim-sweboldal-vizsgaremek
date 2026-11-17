@@ -162,7 +162,15 @@ INSERT INTO `products` (`id`, `name`, `price`, `description`, `stock`, `category
 (50, 'MDV ONE 3,5 kW', 199900, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (MDV).', 0, 'Oldalfali', 'MDV', 12000, 0, 1, '/images/mdv-one.jpg'),
 (51, 'Midea MGP2X-12-SP Xtreme Save Pro 3,5 kW', 309900, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Midea).', 10, 'Oldalfali', 'Midea', 12000, 0, 1, '/images/midea-mgp2x-12-sp-xtreme-save-pro.jpg'),
 (52, 'Gree Comfort Pro GWH18ACDXF-K6DNA1D 5,3 kW', 379900, 'Oldalfali split klíma csomag, 5,3 kW hűtési teljesítménnyel (Gree).', 0, 'Oldalfali', 'Gree', 18000, 0, 1, '/images/gree-comfort-pro-gwh18acdxf-k6dna1d.jpg'),
-
+(53, 'Midea MG2X-09-SP Xtreme Save 2,6 kW', 218150, 'Oldalfali split klíma csomag, 2,6 kW hűtési teljesítménnyel (Midea).', 10, 'Oldalfali', 'Midea', 9000, 0, 1, '/images/midea-mg2x-09-sp-xtreme-save.jpg'),
+(54, 'Fisher Special Edition FSAIF-SP-91AE3 2,65 kW', 202222, 'Oldalfali split klíma csomag, 2,65 kW hűtési teljesítménnyel (Fisher).', 10, 'Oldalfali', 'Fisher', 9000, 0, 1, '/images/fisher-special-edition-fsaif-sp-91ae3.jpg'),
+(55, 'AZURI MIDORI AZI-WN25VA 2,5 kW', 239999, 'Oldalfali split klíma csomag, 2,5 kW hűtési teljesítménnyel (Azuri).', 10, 'Oldalfali', 'Azuri', 9000, 0, 1, '/images/azuri-midori-azi-wn25va.jpg'),
+(56, 'AZURI MIDORI AZI-WN35VA 3,2 kW', 249999, 'Oldalfali split klíma csomag, 3,2 kW hűtési teljesítménnyel (Azuri).', 10, 'Oldalfali', 'Azuri', 12000, 0, 1, '/images/azuri-midori-azi-wn35va.jpg'),
+(57, 'Midea Solstice SOL-12-BL-SP 3,5 kW', 280543, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Midea).', 0, 'Oldalfali', 'Midea', 12000, 0, 1, '/images/midea-solstice-sol-12-bl-sp.jpg'),
+(58, 'AUX Gamma 3R ASW-H09B6B4/QGR3DI-C0-5 2,6 kW', 199901, 'Oldalfali split klíma csomag, 2,6 kW hűtési teljesítménnyel (AUX).', 10, 'Oldalfali', 'AUX', 9000, 0, 1, '/images/aux-gamma-3r-asw-h09b6b4-qgr3di-c0-5.jpg'),
+(59, 'Fisher Summer FSAI-SU-125FE3/FSOAI-SU-125FE3 3,4 kW', 199000, 'Oldalfali split klíma csomag, 3,4 kW hűtési teljesítménnyel (Fisher).', 10, 'Oldalfali', 'Fisher', 12000, 0, 1, '/images/fisher-summer-fsai-su-125fe3-fsoai-su-125fe3.jpg'),
+(60, 'AUX Delta 3 ASW-H09B7A4/CAR3DI-C3-5 2,7 kW', 235292, 'Oldalfali split klíma csomag, 2,7 kW hűtési teljesítménnyel (AUX).', 10, 'Oldalfali', 'AUX', 9000, 0, 1, '/images/aux-delta-3-asw-h09b7a4-car3di-c3-5.jpg'),
+(61, 'Fisher Summer FSAI-SU-95FE3/FSOAI-SU-95FE3 2,6 kW', 189000, 'Oldalfali split klíma csomag, 2,6 kW hűtési teljesítménnyel (Fisher).', 10, 'Oldalfali', 'Fisher', 9000, 0, 1, '/images/fisher-summer-fsai-su-95fe3-fsoai-su-95fe3.jpg');
 -- Példa időpontfoglalás (a teszt felhasználótól)
 INSERT INTO `appointments` (`user_id`, `date`, `time`, `status`, `message`, `assigned_szerelo`) VALUES
 (3, '2026-12-01', '10:00:00', 'pending', 'Klíma telepítést kérnék a nappaliba.', NULL);
