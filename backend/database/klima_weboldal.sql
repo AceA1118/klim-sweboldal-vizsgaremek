@@ -155,6 +155,14 @@ INSERT INTO `products` (`id`, `name`, `price`, `description`, `stock`, `category
 (43, 'AUX Delta 3 ASW-H12C5A4/CAR3DI-B8-5 3,5 kW', 247959, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (AUX).', 10, 'Oldalfali', 'AUX', 12000, 0, 1, '/images/aux-delta-3-asw-h12c5a4-car3di-b8-5.jpg'),
 (44, 'Midea Solstice SOL-12-SP 3,5 kW', 270510, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Midea).', 10, 'Oldalfali', 'Midea', 12000, 0, 1, '/images/midea-solstice-sol-12-sp.jpg'),
 (45, 'Fisher Nordic FSAIF-Nord-123AE3 3,5 kW', 465000, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Fisher).', 10, 'Oldalfali', 'Fisher', 12000, 0, 1, '/images/fisher-nordic-fsaif-nord-123ae3.jpg'),
+(46, 'Gree Comfort Pro GWH09ACCXB-K6DNA1G 2,7 kW', 249900, 'Oldalfali split klíma csomag, 2,7 kW hűtési teljesítménnyel (Gree).', 10, 'Oldalfali', 'Gree', 9000, 0, 1, '/images/gree-comfort-pro-gwh09accxb-k6dna1g.jpg'),
+(47, 'Syen Muse Next SOH12MN-E32DA1D 3,5 kW', 234900, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Syen).', 10, 'Oldalfali', 'Syen', 12000, 0, 1, '/images/syen-muse-next-soh12mn-e32da1d.jpg'),
+(48, 'Polar Optimum SIEH0035SDOB/SO1H0035SDOB 3,5 kW', 205700, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Polar).', 10, 'Oldalfali', 'Polar', 12000, 0, 1, '/images/polar-optimum-sieh0035sdob-so1h0035sdob.jpg'),
+(49, 'Midea LUN-09-SP Solunar 2,6 kW', 233680, 'Oldalfali split klíma csomag, 2,6 kW hűtési teljesítménnyel (Midea).', 10, 'Oldalfali', 'Midea', 9000, 0, 1, '/images/midea-lun-09-sp-solunar.jpg'),
+(50, 'MDV ONE 3,5 kW', 199900, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (MDV).', 0, 'Oldalfali', 'MDV', 12000, 0, 1, '/images/mdv-one.jpg'),
+(51, 'Midea MGP2X-12-SP Xtreme Save Pro 3,5 kW', 309900, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Midea).', 10, 'Oldalfali', 'Midea', 12000, 0, 1, '/images/midea-mgp2x-12-sp-xtreme-save-pro.jpg'),
+(52, 'Gree Comfort Pro GWH18ACDXF-K6DNA1D 5,3 kW', 379900, 'Oldalfali split klíma csomag, 5,3 kW hűtési teljesítménnyel (Gree).', 0, 'Oldalfali', 'Gree', 18000, 0, 1, '/images/gree-comfort-pro-gwh18acdxf-k6dna1d.jpg'),
+
 -- Példa időpontfoglalás (a teszt felhasználótól)
 INSERT INTO `appointments` (`user_id`, `date`, `time`, `status`, `message`, `assigned_szerelo`) VALUES
 (3, '2026-12-01', '10:00:00', 'pending', 'Klíma telepítést kérnék a nappaliba.', NULL);
