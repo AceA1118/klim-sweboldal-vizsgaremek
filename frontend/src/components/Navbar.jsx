@@ -1,8 +1,8 @@
 import { NavLink, Link } from "react-router-dom";
 import "./Navbar.css";
 
-export default function Navbar() {
-  return (
+export default function Navbar({ dark, onToggleDark }) {
+return (
     <nav className="navbar">
       <div className="container navbar-inner">
         {/* Logó */}
@@ -25,7 +25,9 @@ export default function Navbar() {
 
         {/* Gombok jobb oldalon */}
         <div className="navbar-actions">
-          <button className="icon-button" aria-label="Sötét mód">🌙</button>
+          <button className="icon-button" aria-label="Sötét mód" onClick={onToggleDark}>
+            {dark ? "☀️" : "🌙"}
+          </button>         
           <button className="icon-button" aria-label="Kosár">🛒</button>
           <button className="admin-button">Admin</button>
         </div>

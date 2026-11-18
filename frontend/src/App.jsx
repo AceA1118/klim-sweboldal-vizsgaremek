@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
@@ -8,9 +9,15 @@ import Calculator from "./pages/Calculator.jsx";
 import Invoice from "./pages/Invoice.jsx";
 
 export default function App() {
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
+
   return (
     <>
-      <Navbar />
+      <Navbar dark={dark} onToggleDark={() => setDark(!dark)} />
 
       <Routes>
         <Route path="/" element={<Home />} />
