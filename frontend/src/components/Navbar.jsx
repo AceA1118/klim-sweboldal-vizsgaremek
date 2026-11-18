@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "./Navbar.css";
 
 export default function Navbar() {
@@ -6,13 +6,13 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="container navbar-inner">
         {/* Logó */}
-        <div className="navbar-logo">
+        <Link to="/" className="navbar-logo">
           <div className="logo-icon">CK</div>
           <div>
             <div className="logo-title">Csákó Klíma</div>
             <div className="logo-subtitle">Klimatizálás &amp; Szerviz</div>
           </div>
-        </div>
+        </Link>
 
         {/* Menüpontok */}
         <ul className="navbar-links">
