@@ -63,3 +63,9 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
   padding: 0 1.5rem;
 }
+
+.page {
+  min-height: 60vh;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
