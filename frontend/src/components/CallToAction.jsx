@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import "./CallToAction.css";
 
 export default function CallToAction() {
+  const navigate = useNavigate();
+
   return (
     <section className="cta">
       <div className="container">
@@ -10,7 +13,9 @@ export default function CallToAction() {
             Használja ingyenes kalkulátorunkat — megtaláljuk az ideális klímát
             szobája mérete és igényei alapján.
           </p>
-          <button className="cta-button">Kalkulátor megnyitása →</button>
+          <button className="cta-button" onClick={() => navigate("/kalkulator")}>         
+            Kalkulátor megnyitása →
+          </button>        
         </div>
       </div>
     </section>

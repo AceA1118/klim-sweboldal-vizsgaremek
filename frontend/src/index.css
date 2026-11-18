@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap");
 
-/* Színek: egy helyen vannak, a többi fájl ezekre hivatkozik var(--név)-vel */
 :root {
   --background: #f8fafc;
   --foreground: #0f172a;
@@ -15,7 +14,6 @@
   --radius: 0.75rem;
 }
 
-/* Sötét téma: ha a <html> elemre rákerül a "dark" osztály, ezek az értékek érvényesek */
 .dark {
   --background: #030712;
   --foreground: #f1f5f9;
@@ -50,7 +48,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Outfit", sans-serif;
 }
 
-/* Színátmenetes szöveg a címekhez */
 .gradient-text {
   background: linear-gradient(135deg, #0891b2, #22d3ee, #06b6d4);
   -webkit-background-clip: text;
