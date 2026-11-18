@@ -1,16 +1,25 @@
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
-import Hero from "./components/Hero.jsx";
-import Services from "./components/Services.jsx";
-import CallToAction from "./components/CallToAction.jsx";
 import Footer from "./components/Footer.jsx";
+import Home from "./pages/Home.jsx";
+import Shop from "./pages/Shop.jsx";
+import Booking from "./pages/Booking.jsx";
+import Calculator from "./pages/Calculator.jsx";
+import Invoice from "./pages/Invoice.jsx";
 
 export default function App() {
   return (
     <>
       <Navbar />
-      <Hero />
-      <Services />
-      <CallToAction />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/webshop" element={<Shop />} />
+        <Route path="/idopontfoglalas" element={<Booking />} />
+        <Route path="/kalkulator" element={<Calculator />} />
+        <Route path="/szamlazas" element={<Invoice />} />
+      </Routes>
+
       <Footer />
     </>
   );
