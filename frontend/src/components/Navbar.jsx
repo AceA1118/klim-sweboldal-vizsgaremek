@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 export default function Navbar() {
@@ -15,11 +16,11 @@ export default function Navbar() {
 
         {/* Menüpontok */}
         <ul className="navbar-links">
-          <li><a href="#" className="active">Főoldal</a></li>
-          <li><a href="#">Webshop</a></li>
-          <li><a href="#">Időpontfoglalás</a></li>
-          <li><a href="#">Kalkulátor</a></li>
-          <li><a href="#">Számlázás</a></li>
+          <li><NavLink to="/" end>Főoldal</NavLink></li>
+          <li><NavLink to="/webshop">Webshop</NavLink></li>
+          <li><NavLink to="/idopontfoglalas">Időpontfoglalás</NavLink></li>
+          <li><NavLink to="/kalkulator">Kalkulátor</NavLink></li>
+          <li><NavLink to="/szamlazas">Számlázás</NavLink></li>
         </ul>
 
         {/* Gombok jobb oldalon */}
