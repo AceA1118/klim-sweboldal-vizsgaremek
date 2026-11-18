@@ -9,10 +9,14 @@ import Calculator from "./pages/Calculator.jsx";
 import Invoice from "./pages/Invoice.jsx";
 
 export default function App() {
-  const [dark, setDark] = useState(false);
+  
+  const [dark, setDark] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
+    localStorage.setItem("theme", dark ? "dark" : "light");
   }, [dark]);
 
   return (
