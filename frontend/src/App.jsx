@@ -7,6 +7,7 @@ import Shop from "./pages/Shop.jsx";
 import Booking from "./pages/Booking.jsx";
 import Calculator from "./pages/Calculator.jsx";
 import Invoice from "./pages/Invoice.jsx";
+import Login from "./pages/Login.jsx";
 
 export default function App() {
   
@@ -29,6 +30,7 @@ export default function App() {
         <Route path="/idopontfoglalas" element={<Booking />} />
         <Route path="/kalkulator" element={<Calculator />} />
         <Route path="/szamlazas" element={<Invoice />} />
+        <Route path="/bejelentkezes" element={<Login />} />
       </Routes>
 
       <Footer />
