@@ -1,16 +1,38 @@
+import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
-import Hero from "./components/Hero.jsx";
-import Services from "./components/Services.jsx";
-import CallToAction from "./components/CallToAction.jsx";
 import Footer from "./components/Footer.jsx";
+import Home from "./pages/Home.jsx";
+import Shop from "./pages/Shop.jsx";
+import Booking from "./pages/Booking.jsx";
+import Calculator from "./pages/Calculator.jsx";
+import Invoice from "./pages/Invoice.jsx";
+import Login from "./pages/Login.jsx";
 
 export default function App() {
+  
+  const [dark, setDark] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+    localStorage.setItem("theme", dark ? "dark" : "light");
+  }, [dark]);
+
   return (
     <>
-      <Navbar />
-      <Hero />
-      <Services />
-      <CallToAction />
+      <Navbar dark={dark} onToggleDark={() => setDark(!dark)} />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/webshop" element={<Shop />} />
+        <Route path="/idopontfoglalas" element={<Booking />} />
+        <Route path="/kalkulator" element={<Calculator />} />
+        <Route path="/szamlazas" element={<Invoice />} />
+        <Route path="/bejelentkezes" element={<Login />} />
+      </Routes>
+
       <Footer />
     </>
   );

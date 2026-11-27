@@ -1,6 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import "./Hero.css";
 
-// A négy statisztika adatai. Ezt a listát járjuk végig a .map()-pel lent.
 const stats = [
   { value: "500+", label: "Elégedett ügyfél" },
   { value: "12 év", label: "Tapasztalat" },
@@ -9,6 +9,8 @@ const stats = [
 ];
 
 export default function Hero() {
+    const navigate = useNavigate();
+    
   return (
     <section className="hero">
       <div className="container hero-grid">
@@ -27,9 +29,24 @@ export default function Hero() {
           </p>
 
           <div className="hero-buttons">
-            <button className="button button-primary">Időpontot foglalok</button>
-            <button className="button button-outline">Klímát vásárolok</button>
-            <button className="button button-muted">Kalkulátor →</button>
+            <button
+              className="button button-primary"
+              onClick={() => navigate("/idopontfoglalas")}
+            >
+              Időpontot foglalok
+            </button>
+            <button
+              className="button button-outline"
+              onClick={() => navigate("/webshop")}
+            >
+              Klímát vásárolok
+            </button>
+            <button
+              className="button button-muted"
+              onClick={() => navigate("/kalkulator")}
+            >
+              Kalkulátor →
+            </button>           
           </div>
         </div>
 
