@@ -135,11 +135,36 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`) VALUES
 (3, 'Teszt Felhasználó', 'user@klima.hu', '$2b$10$u.iBU6QShr0Y6zVzZ0Eu9uVS4ZxVNE914dNCuPG0wOvEyhATVCedO',    'user');
 
 INSERT INTO `products` (`id`, `name`, `price`, `description`, `stock`, `category`, `brand`, `btu`, `wifi`, `inverter`, `image_url`) VALUES
-(1, 'Gree Amber 2.5 kW', 229000, 'Inverteres oldalfali split klíma kis helyiségekhez, Wi-Fi vezérléssel.', 10, 'Oldalfali', 'Gree',    9000,  1, 1, '/images/gree-amber-25.jpg'),
-(2, 'Gree Amber 3.5 kW', 259000, 'Inverteres oldalfali split klíma közepes méretű szobákhoz, Wi-Fi vezérléssel.', 8, 'Oldalfali', 'Gree',  12000, 1, 1, '/images/gree-amber-35.jpg'),
-(3, 'Gree Amber 5 kW',   329000, 'Nagy teljesítményű inverteres oldalfali split klíma nagyobb terekhez.', 5, 'Oldalfali', 'Gree',        18000, 1, 1, '/images/gree-amber-5.jpg'),
-(4, 'Midea Xtreme Save 2.6 kW', 199000, 'Energiatakarékos inverteres klíma, csendes működéssel.', 12, 'Oldalfali', 'Midea',             9000,  0, 1, '/images/midea-xtreme-26.jpg'),
-(5, 'Daikin Perfera 3.5 kW',    389000, 'Prémium inverteres klíma kiváló hatásfokkal és Wi-Fi vezérléssel.', 4, 'Oldalfali', 'Daikin', 12000, 1, 1, '/images/daikin-perfera-35.jpg');
+(1, 'Gree Amber 2.5 kW', 229000, 'Inverteres oldalfali split klíma kis helyiségekhez, Wi-Fi vezérléssel.', 10, 'Oldalfali', 'Gree', 9000, 1, 1, '/images/gree-amber-2-5-kw.jpg'),
+(2, 'Gree Amber 3.5 kW', 259000, 'Inverteres oldalfali split klíma közepes méretű szobákhoz, Wi-Fi vezérléssel.', 8, 'Oldalfali', 'Gree', 12000, 1, 1, '/images/gree-amber-3-5-kw.jpg'),
+(3, 'Gree Amber 5 kW', 329000, 'Nagy teljesítményű inverteres oldalfali split klíma nagyobb terekhez.', 5, 'Oldalfali', 'Gree', 18000, 1, 1, '/images/gree-amber-5-kw.jpg'),
+(4, 'Midea Xtreme Save 2.6 kW', 199000, 'Energiatakarékos inverteres klíma, csendes működéssel.', 12, 'Oldalfali', 'Midea', 9000, 0, 1, '/images/midea-xtreme-save-2-6-kw.jpg'),
+(5, 'Daikin Perfera 3.5 kW', 389000, 'Prémium inverteres klíma kiváló hatásfokkal és Wi-Fi vezérléssel.', 4, 'Oldalfali', 'Daikin', 12000, 1, 1, '/images/daikin-perfera-3-5-kw.jpg'),
+(6, 'Gree Pular 2.5 kW', 249000, 'Inverteres oldalfali split klíma kis helyiségekhez (kb. 15-25 m²), Wi-Fi vezérléssel.', 9, 'Oldalfali', 'Gree', 9000, 1, 1, '/images/gree-pular-2-5-kw.jpg'),
+(7, 'Gree Pular 3.5 kW', 289000, 'Inverteres oldalfali split klíma közepes méretű szobákhoz (kb. 25-35 m²), Wi-Fi vezérléssel.', 7, 'Oldalfali', 'Gree', 12000, 1, 1, '/images/gree-pular-3-5-kw.jpg'),
+(8, 'Gree Pular 7 kW', 459000, 'Inverteres oldalfali split klíma nagy helyiségekhez (kb. 50-70 m²), Wi-Fi vezérléssel.', 4, 'Oldalfali', 'Gree', 24000, 1, 1, '/images/gree-pular-7-kw.jpg'),
+(9, 'Midea Xtreme Save 3.5 kW', 239000, 'Inverteres oldalfali split klíma közepes méretű szobákhoz (kb. 25-35 m²).', 11, 'Oldalfali', 'Midea', 12000, 0, 1, '/images/midea-xtreme-save-3-5-kw.jpg'),
+(10, 'Midea Xtreme Save 5 kW', 319000, 'Inverteres oldalfali split klíma nagyobb terekhez (kb. 35-50 m²), Wi-Fi vezérléssel.', 6, 'Oldalfali', 'Midea', 18000, 1, 1, '/images/midea-xtreme-save-5-kw.jpg'),
+(11, 'Midea Blanc 7 kW', 429000, 'Inverteres oldalfali split klíma nagy helyiségekhez (kb. 50-70 m²), Wi-Fi vezérléssel.', 5, 'Oldalfali', 'Midea', 24000, 1, 1, '/images/midea-blanc-7-kw.jpg'),
+(12, 'Daikin Sensira 2.5 kW', 259000, 'Inverteres oldalfali split klíma kis helyiségekhez (kb. 15-25 m²).', 8, 'Oldalfali', 'Daikin', 9000, 0, 1, '/images/daikin-sensira-2-5-kw.jpg'),
+(13, 'Daikin Sensira 5 kW', 389000, 'Inverteres oldalfali split klíma nagyobb terekhez (kb. 35-50 m²).', 5, 'Oldalfali', 'Daikin', 18000, 0, 1, '/images/daikin-sensira-5-kw.jpg'),
+(14, 'Daikin Perfera 5 kW', 489000, 'Inverteres oldalfali split klíma nagyobb terekhez (kb. 35-50 m²), Wi-Fi vezérléssel.', 3, 'Oldalfali', 'Daikin', 18000, 1, 1, '/images/daikin-perfera-5-kw.jpg'),
+(15, 'Daikin Perfera 7 kW', 649000, 'Inverteres oldalfali split klíma nagy helyiségekhez (kb. 50-70 m²), Wi-Fi vezérléssel.', 3, 'Oldalfali', 'Daikin', 24000, 1, 1, '/images/daikin-perfera-7-kw.jpg'),
+(16, 'Samsung WindFree 2.5 kW', 299000, 'Inverteres oldalfali split klíma kis helyiségekhez (kb. 15-25 m²), Wi-Fi vezérléssel.', 7, 'Oldalfali', 'Samsung', 9000, 1, 1, '/images/samsung-windfree-2-5-kw.jpg'),
+(17, 'Samsung WindFree 3.5 kW', 349000, 'Inverteres oldalfali split klíma közepes méretű szobákhoz (kb. 25-35 m²), Wi-Fi vezérléssel.', 6, 'Oldalfali', 'Samsung', 12000, 1, 1, '/images/samsung-windfree-3-5-kw.jpg'),
+(18, 'Samsung WindFree 5 kW', 449000, 'Inverteres oldalfali split klíma nagyobb terekhez (kb. 35-50 m²), Wi-Fi vezérléssel.', 4, 'Oldalfali', 'Samsung', 18000, 1, 1, '/images/samsung-windfree-5-kw.jpg'),
+(19, 'LG Standard 2.5 kW', 219000, 'Inverteres oldalfali split klíma kis helyiségekhez (kb. 15-25 m²).', 10, 'Oldalfali', 'LG', 9000, 0, 1, '/images/lg-standard-2-5-kw.jpg'),
+(20, 'LG Standard 3.5 kW', 269000, 'Inverteres oldalfali split klíma közepes méretű szobákhoz (kb. 25-35 m²).', 9, 'Oldalfali', 'LG', 12000, 0, 1, '/images/lg-standard-3-5-kw.jpg'),
+(21, 'LG Artcool 5 kW', 469000, 'Inverteres oldalfali split klíma nagyobb terekhez (kb. 35-50 m²), Wi-Fi vezérléssel.', 4, 'Oldalfali', 'LG', 18000, 1, 1, '/images/lg-artcool-5-kw.jpg'),
+(22, 'Panasonic Etherea 2.5 kW', 339000, 'Inverteres oldalfali split klíma kis helyiségekhez (kb. 15-25 m²), Wi-Fi vezérléssel.', 5, 'Oldalfali', 'Panasonic', 9000, 1, 1, '/images/panasonic-etherea-2-5-kw.jpg'),
+(23, 'Panasonic Etherea 3.5 kW', 399000, 'Inverteres oldalfali split klíma közepes méretű szobákhoz (kb. 25-35 m²), Wi-Fi vezérléssel.', 4, 'Oldalfali', 'Panasonic', 12000, 1, 1, '/images/panasonic-etherea-3-5-kw.jpg'),
+(24, 'Mitsubishi Electric MSZ-AP 3.5 kW', 419000, 'Inverteres oldalfali split klíma közepes méretű szobákhoz (kb. 25-35 m²), Wi-Fi vezérléssel.', 4, 'Oldalfali', 'Mitsubishi Electric', 12000, 1, 1, '/images/mitsubishi-electric-msz-ap-3-5-kw.jpg'),
+(25, 'Mitsubishi Electric MSZ-AP 5 kW', 519000, 'Inverteres oldalfali split klíma nagyobb terekhez (kb. 35-50 m²), Wi-Fi vezérléssel.', 3, 'Oldalfali', 'Mitsubishi Electric', 18000, 1, 1, '/images/mitsubishi-electric-msz-ap-5-kw.jpg'),
+(26, 'Fujitsu Eco 2.5 kW', 249000, 'Inverteres oldalfali split klíma kis helyiségekhez (kb. 15-25 m²).', 8, 'Oldalfali', 'Fujitsu', 9000, 0, 1, '/images/fujitsu-eco-2-5-kw.jpg'),
+(27, 'Fujitsu Eco 3.5 kW', 289000, 'Inverteres oldalfali split klíma közepes méretű szobákhoz (kb. 25-35 m²).', 7, 'Oldalfali', 'Fujitsu', 12000, 0, 1, '/images/fujitsu-eco-3-5-kw.jpg'),
+(28, 'Toshiba Seiya 3.5 kW', 319000, 'Inverteres oldalfali split klíma közepes méretű szobákhoz (kb. 25-35 m²), Wi-Fi vezérléssel.', 6, 'Oldalfali', 'Toshiba', 12000, 1, 1, '/images/toshiba-seiya-3-5-kw.jpg'),
+(29, 'Haier Flexis 2.5 kW', 229000, 'Inverteres oldalfali split klíma kis helyiségekhez (kb. 15-25 m²), Wi-Fi vezérléssel.', 9, 'Oldalfali', 'Haier', 9000, 1, 1, '/images/haier-flexis-2-5-kw.jpg'),
+(30, 'Haier Flexis 5 kW', 339000, 'Inverteres oldalfali split klíma nagyobb terekhez (kb. 35-50 m²), Wi-Fi vezérléssel.', 5, 'Oldalfali', 'Haier', 18000, 1, 1, '/images/haier-flexis-5-kw.jpg'),
 (31, 'Gree Comfort Pro GWH12ACCXD-K6DNA1D 3,5 kW', 259900, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Gree).', 10, 'Oldalfali', 'Gree', 12000, 0, 1, '/images/gree-comfort-pro-gwh12accxd-k6dna1d.jpg'),
 (32, 'Midea LUN-12-SP Solunar 3,5 kW', 243840, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Midea).', 10, 'Oldalfali', 'Midea', 12000, 0, 1, '/images/midea-lun-12-sp-solunar.jpg'),
 (33, 'Midea MEX-12-SP All Easy Pro 3,5 kW', 247650, 'Oldalfali split klíma csomag, 3,5 kW hűtési teljesítménnyel (Midea).', 10, 'Oldalfali', 'Midea', 12000, 0, 1, '/images/midea-mex-12-sp-all-easy-pro.jpg'),
@@ -170,7 +195,6 @@ INSERT INTO `products` (`id`, `name`, `price`, `description`, `stock`, `category
 (58, 'AUX Gamma 3R ASW-H09B6B4/QGR3DI-C0-5 2,6 kW', 199901, 'Oldalfali split klíma csomag, 2,6 kW hűtési teljesítménnyel (AUX).', 10, 'Oldalfali', 'AUX', 9000, 0, 1, '/images/aux-gamma-3r-asw-h09b6b4-qgr3di-c0-5.jpg'),
 (59, 'Fisher Summer FSAI-SU-125FE3/FSOAI-SU-125FE3 3,4 kW', 199000, 'Oldalfali split klíma csomag, 3,4 kW hűtési teljesítménnyel (Fisher).', 10, 'Oldalfali', 'Fisher', 12000, 0, 1, '/images/fisher-summer-fsai-su-125fe3-fsoai-su-125fe3.jpg'),
 (60, 'AUX Delta 3 ASW-H09B7A4/CAR3DI-C3-5 2,7 kW', 235292, 'Oldalfali split klíma csomag, 2,7 kW hűtési teljesítménnyel (AUX).', 10, 'Oldalfali', 'AUX', 9000, 0, 1, '/images/aux-delta-3-asw-h09b7a4-car3di-c3-5.jpg'),
-(61, 'Fisher Summer FSAI-SU-95FE3/FSOAI-SU-95FE3 2,6 kW', 189000, 'Oldalfali split klíma csomag, 2,6 kW hűtési teljesítménnyel (Fisher).', 10, 'Oldalfali', 'Fisher', 9000, 0, 1, '/images/fisher-summer-fsai-su-95fe3-fsoai-su-95fe3.jpg');
--- Példa időpontfoglalás (a teszt felhasználótól)
+(61, 'Fisher Summer FSAI-SU-95FE3/FSOAI-SU-95FE3 2,6 kW', 189000, 'Oldalfali split klíma csomag, 2,6 kW hűtési teljesítménnyel (Fisher).', 10, 'Oldalfali', 'Fisher', 9000, 0, 1, '/images/fisher-summer-fsai-su-95fe3-fsoai-su-95fe3.jpg');-- Példa időpontfoglalás (a teszt felhasználótól)
 INSERT INTO `appointments` (`user_id`, `date`, `time`, `status`, `message`, `assigned_szerelo`) VALUES
 (3, '2026-12-01', '10:00:00', 'pending', 'Klíma telepítést kérnék a nappaliba.', NULL);
